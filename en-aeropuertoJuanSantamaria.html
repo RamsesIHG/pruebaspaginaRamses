@@ -289,6 +289,32 @@
 }
 
 
+ .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 5;
+        font-size: 18px;
+    }
+
+    .carousel-button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .carousel-button.left {
+        left: 15px;
+    }
+
+    .carousel-button.right {
+        right: 15px;
+    }
+
 
 
    
@@ -576,7 +602,7 @@
         <nav>
             <h1>
                 <a href="en-index.html">
-                    <img src="logo.png" alt="Descripción del logo" style="height: 150px;">
+                    <img src="logo.png" alt="Descripción del logo" style="height: 100px;">
                 </a>
             </h1>
             <button id="menu-toggle" class="menu-toggle">
