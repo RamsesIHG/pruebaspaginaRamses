@@ -227,6 +227,34 @@
     color: white;
     text-decoration-color: white;
 }
+
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 5;
+    font-size: 18px;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button.left {
+    left: 15px;
+}
+
+.carousel-button.right {
+    right: 15px;
+}
+
 .carousel-container {
     width: 100%;
     height: 50%;
@@ -575,7 +603,7 @@
         <nav>
             <h1>
                 <a href="index.html">
-                    <img src="logo.png" alt="Descripción del logo" style="height: 150px;">
+                    <img src="logo.png" alt="Descripción del logo" style="height: 100px;">
                 </a>
             </h1>
             <button id="menu-toggle" class="menu-toggle">
@@ -612,6 +640,8 @@
     <!-- Carrusel principal -->
     <div class="carousel">
         <div class="carousel">
+                    <button class="carousel-button left" id="prevButton">&#10094;</button>
+                    <button class="carousel-button right" id="nextButton">&#10095;</button>
                  <img src="sykes2.jpg" alt="Sykes" loading="lazy"  class="active">
                  <img src="sykes3.jpg" alt="Sykes" loading="lazy" >
                  <img src="sykes4.jpg" alt="Sykes" loading="lazy" >
@@ -753,90 +783,64 @@
  </footer>
 
 <script>
-     // Alternar submenú de idiomas
-    const languageMenu = document.getElementById('languageMenu');
-    const languageSubmenu = document.getElementById('languageSubmenu');
-
-    languageMenu.addEventListener('click', (e) => {
-        e.preventDefault();
-        languageSubmenu.classList.toggle('show'); // Alterna la clase 'show'
-    });
-
     document.addEventListener('DOMContentLoaded', () => {
-        const productMenu = document.getElementById('productMenu'); // Botón "Productos"
-        const submenu = document.querySelector('.submenu'); // Submenú de "Productos"
-        const menuToggle = document.getElementById('menu-toggle'); // Botón hamburguesa
-        const menu = document.querySelector('.menu'); // Menú principal
-
-        // Alternar el submenú al hacer clic en "Productos"
-        productMenu.addEventListener('click', (event) => {
-            event.preventDefault(); // Evitar el comportamiento predeterminado
-            submenu.classList.toggle('show'); // Alternar la clase "show"
-        });
-
-        // Mostrar/Ocultar el menú principal en móvil
-        menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('active'); // Mostrar/Ocultar el menú
-        });
-
-        // Cerrar submenú y menú principal si se hace clic fuera
-        document.addEventListener('click', (event) => {
-            if (!submenu.contains(event.target) && !productMenu.contains(event.target)) {
-                submenu.classList.remove('show'); // Ocultar submenú
-            }
-
-            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-                menu.classList.remove('active'); // Ocultar menú principal
-            }
-        });
-    });
-
-document.addEventListener('DOMContentLoaded', () => {
     let currentImageIndex = 0;
-    const images = document.querySelectorAll('.carousel img'); // Selecciona imágenes dentro del carrusel grande
+    const images = document.querySelectorAll('.carousel > img'); // Selecciona imágenes dentro del carrusel
     const thumbnails = document.querySelectorAll('.carousel-track img'); // Miniaturas del carrusel pequeño
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
 
-  function showImageInMainCarousel(imageSrc) {
-    let highResSrc = imageSrc.replace('baja', '');  // Convertir baja resolución a alta
-    console.log("Buscando imagen:", highResSrc);
+    function showImageInMainCarousel(imageSrc) {
+        let highResSrc = imageSrc.replace('baja', '');  // Convertir baja resolución a alta
+        console.log("Buscando imagen:", highResSrc);
 
-    let found = false;
-    
-    images.forEach((img, index) => {
-        let imgName = img.src.split('/').pop(); // Obtener solo el nombre del archivo
-        let expectedName = highResSrc.split('/').pop(); // Obtener solo el nombre esperado
-        console.log("Comparando con:", imgName, "vs", expectedName);
+        let found = false;
+        
+        images.forEach((img, index) => {
+            let imgName = img.src.split('/').pop(); // Obtener solo el nombre del archivo
+            console.log("Comparando con:", imgName);
 
-        if (imgName === expectedName) {
-            document.querySelector('.carousel img.active')?.classList.remove('active'); // Remover la anterior
-            img.classList.add('active'); // Activar nueva imagen
-            currentImageIndex = index;
-            found = true;
+            if (imgName === highResSrc) {
+                document.querySelector('.carousel img.active')?.classList.remove('active'); // Remover la anterior
+                img.classList.add('active'); // Activar nueva imagen
+                currentImageIndex = index;
+                found = true;
+            }
+        });
+
+        if (!found) {
+            console.error("No se encontró la imagen:", highResSrc);
         }
-    });
-
-    if (!found) {
-        console.error("No se encontró la imagen:", highResSrc);
     }
-}
 
-thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', (event) => {
-        const clickedImageSrc = event.target.src;
-        console.log("Miniatura clickeada:", clickedImageSrc);
-        showImageInMainCarousel(clickedImageSrc);
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', (event) => {
+            const clickedImageSrc = event.target.src.split('/').pop();  // Obtener solo el nombre del archivo
+            console.log("Miniatura clickeada:", clickedImageSrc);
+            showImageInMainCarousel(clickedImageSrc);
+        });
     });
-});
+
+    // Cambio de imagen con botones de navegación
+    function showPrevImage() {
+        images[currentImageIndex].classList.remove('active');
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        images[currentImageIndex].classList.add('active');
+    }
+
+    function showNextImage() {
+        images[currentImageIndex].classList.remove('active');
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        images[currentImageIndex].classList.add('active');
+    }
+
+    prevButton?.addEventListener('click', showPrevImage);
+    nextButton?.addEventListener('click', showNextImage);
 
     // Cambio automático de imagen cada 9 segundos
-    function showNextImage() {
-        images[currentImageIndex].classList.remove('active'); // Quitar la clase activa de la imagen actual
-        currentImageIndex = (currentImageIndex + 1) % images.length; // Pasar a la siguiente imagen
-        images[currentImageIndex].classList.add('active'); // Agregar la clase activa a la nueva imagen
-    }
     setInterval(showNextImage, 9000);
 
-    // Código para el carrusel pequeño (miniaturas)
+    // Código para el carrusel pequeño
     const track = document.querySelector('.carousel-track');
     const slides = Array.from(track.children);
     const slideWidth = slides[0].getBoundingClientRect().width;
