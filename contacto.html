@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Contacto | Arte En Luz</title>
+        <title> Contacto | Arte En Luz V3</title>
         <link rel="icon" href="logo.icon.ico">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <style>
@@ -90,7 +90,7 @@
                 border-radius: 5px;
                 text-decoration: none;
             }
-            .button:hover {
+            .button:not(:disabled):hover {
                 background-color: black;
                 color: white;
                 text-decoration-color: white;
@@ -144,7 +144,7 @@
                 text-decoration: none;
             }
 
-            .button:hover {
+            button:not(:disabled):hover {
                 background-color: black;
                 color: white;
             }
@@ -511,18 +511,46 @@
                     cursor: pointer;
                 }
 
-                button:hover {
-                    background-color: #0056b3;
+                button:not(:disabled):hover {
+                    background-color: black;
                 }
 
+                button:disabled {
+                    background-color: #ccc; /* Color gris */
+                    color: #666; /* Texto gris */
+                    border: 1px solid #999;
+                    cursor: not-allowed; /* Cambia el cursor */
+                    opacity: 0.6;
+                }
             }
+                btnEnviar {
+                    background-color: white;
+                    color: black;
+                    border: 2px solid black;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                btnEnviar:not(:disabled):hover {
+                    background-color: black;
+                    color: white;
+                }
+
+                btnEnviar:disabled {
+                    background-color: black !important;
+                    color: gray !important;
+                    border: 2px solid black !important;
+                    cursor: not-allowed;
+                    pointer-events: none; 
+                }
 
         </style>
     </head>
     <body>
         <div class="page-container">
             <!-- Header y menú -->
-
             <header>
                 <nav>
                     <h1>
@@ -557,234 +585,271 @@
                     </ul>                      
                 </nav>
             </header>
-        </style>
-    </head>
-    <body>
-        <div class="container-contact-info">
-            <!-- Contact Information Section -->
-            <div class="contact-info">
-                <h2>Detalles de contacto</h2>
-                <br>
+            <div class="container-contact-info">
+                <!-- Contact Information Section -->
+                <div class="contact-info">
+                    <h2>Detalles de contacto</h2>
+                    <br>
 
-                <p><strong>Dirección:</strong> <br> entro comercial las torres Calle Luisa 50, sabana norte</p> <br>
-                <p><strong>Teléfono:</strong> <br> CR +506 2588-5600</p> <br>
-                <p><strong>Correo electrónico:</strong>  <br> arteenluz@arteenluz.com</p> <br>
+                    <p><strong>Dirección:</strong> <br>Centro comercial las torres, Calle Luisa 50, sabana norte</p> <br>
+                    <p><strong>Teléfono:</strong> <br> CR +506 2588-5600</p> <br>
+                    <p><strong>Correo electrónico:</strong>  <br> arteenluz@arteenluz.com</p> <br>
+                </div>
             </div>
+
+            <!-- Contact Form Section -->
+            <div class="container-contact-form">
+                <form id="contactForm" action="contacto.php" method="POST">
+                    <div class="input-group">
+                        <label for="nombre">Nombre<span>*</span></label>
+                        <input type="text" id="nombre" name="nombre">
+                        <div class="error" id="nombreError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="apellido">Apellido<span>*</span></label>
+                        <input type="text" id="apellido" name="apellido">
+                        <div class="error" id="apellidoError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="correo">Correo electronico<span>*</span></label>
+                        <input type="email" id="correo" name="correo">
+                        <div class="error" id="correoError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="telefono">Telefono<span>*</span></label>
+                        <input type="tel" id="telefono" name="telefono" pattern="^\d{6,15}$" title="Por favor, ingrese entre 6 y 15 dígitos.">
+                        <div class="error" id="telefonoError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="informacion">Informacion deseada<span>*</span></label>
+                        <input type="text" id="informacion" name="informacion">
+                        <div class="error" id="informacionError"></div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" id="comercial" class="toggle-button">Comercial</button>
+                        <button type="button" id="residencial" class="toggle-button">Residencial</button>
+                    </div>
+
+                    <button id="btnEnviar" type="submit" class="submit-button">Enviar</button>
+                    <div class="error" id="generalError"></div><br><br><br><br>
+                </form>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9376198546315!2d-84.10416392472878!3d9.939148474078362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fcaaaba75e13%3A0x52947a84dc2e2989!2sArte%20en%20Luz%20de%20Costa%20Rica%20S.A!5e0!3m2!1ses!2scr!4v1737917437622!5m2!1ses!2scr" 
+                    width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="map-movilcontainer">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9376198546315!2d-84.10416392472878!3d9.939148474078362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fcaaaba75e13%3A0x52947a84dc2e2989!2sArte%20en%20Luz%20de%20Costa%20Rica%20S.A!5e0!3m2!1ses!2scr!4v1737917437622!5m2!1ses!2scr" 
+                    width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+
+            <!-- Zona de redes sociales -->
+            <br> <br> <br>
+            <footer 
+                style="border-top: 1px solid #ccc; padding: 20px; font-family: Arial, sans-serif; font-size: 14px; color: #666; display: flex; justify-content: space-between; align-items: center;">
+                <!-- Sección de la imagen del negocio con enlace -->
+                <div>
+                    <a href="index.html" target="_blank" rel="noopener noreferrer">
+                        <img src="logo.png" alt="Arte en Luz" style="height: 150px;">
+                    </a>
+                </div>
+
+                <!-- Sección de contacto -->
+                <div style="text-align: center;">
+                    <p style="margin: 5px 0;">CR +506 2588-5600</p>
+                    <p style="margin: 5px 0;">arteenluz@arteenluz.com</p>
+
+                </div>
+
+                <!-- Sección de dirección -->
+                <div style="text-align: center;">
+                    <p style="margin: 5px 0;">Centro comercial las torres</p>
+                    <p style="margin: 5px 0;">Calle Luisa 50, sabana norte</p>
+                </div>
+
+                <!-- Íconos de redes sociales -->
+                <div style="display: flex; gap: 10px;">
+                    <a href="https://www.facebook.com/arteenluz" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook" style="font-size: 20px; color: #666;"></i>
+                    </a>
+                    <a href="https://www.instagram.com/arteenluz/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram" style="font-size: 20px; color: #666;"></i>
+                    </a>
+
+                    <a href="https://maps.app.goo.gl/NLaLL5UcXFGizq2k8" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-map-marker-alt" style="font-size: 20px; color: #666;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/arteenluz" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin" style="font-size: 20px; color: #666;"></i>
+                    </a>
+                </div>
+            </footer>
         </div>
 
-        <!-- Contact Form Section -->
-        <div class="container-contact-form">
-            <form id="contactForm" action="contacto.php" method="POST">
-                <div class="input-group">
-                    <label for="nombre">Nombre<span>*</span></label>
-                    <input type="text" id="nombre" name="nombre">
-                    <div class="error" id="nombreError"></div>
-                </div>
-                <div class="input-group">
-                    <label for="apellido">Apellido<span>*</span></label>
-                    <input type="text" id="apellido" name="apellido">
-                    <div class="error" id="apellidoError"></div>
-                </div>
-                <div class="input-group">
-                    <label for="correo">Correo electronico<span>*</span></label>
-                    <input type="email" id="correo" name="correo">
-                    <div class="error" id="correoError"></div>
-                </div>
-                <div class="input-group">
-                    <label for="telefono">Telefono<span>*</span></label>
-                    <input type="tel" id="telefono" name="telefono" pattern="^\d{6,15}$" title="Por favor, ingrese entre 6 y 15 dígitos.">
-                    <div class="error" id="telefonoError"></div>
-                </div>
-                <div class="input-group">
-                    <label for="informacion">Informacion deseada<span>*</span></label>
-                    <input type="text" id="informacion" name="informacion">
-                    <div class="error" id="informacionError"></div>
-                </div>
-                <div class="button-group">
-                    <button type="button" id="comercial" class="toggle-button">Comercial</button>
-                    <button type="button" id="residencial" class="toggle-button">Residencial</button>
-                </div>
+        <script>
+            // Alternar submenú de idiomas
+            const languageMenu = document.getElementById('languageMenu');
+            const languageSubmenu = document.getElementById('languageSubmenu');
 
-                <button type="submit" class="submit-button">Enviar</button>
-                <div class="error" id="generalError"></div><br><br><br><br>
-            </form>
-        </div>
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9376198546315!2d-84.10416392472878!3d9.939148474078362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fcaaaba75e13%3A0x52947a84dc2e2989!2sArte%20en%20Luz%20de%20Costa%20Rica%20S.A!5e0!3m2!1ses!2scr!4v1737917437622!5m2!1ses!2scr" 
-                width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-        <div class="map-movilcontainer">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9376198546315!2d-84.10416392472878!3d9.939148474078362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fcaaaba75e13%3A0x52947a84dc2e2989!2sArte%20en%20Luz%20de%20Costa%20Rica%20S.A!5e0!3m2!1ses!2scr!4v1737917437622!5m2!1ses!2scr" 
-                width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </body>
-</html>
-
-
-<!-- Zona de redes sociales -->
-<br> <br> <br>
-<footer 
-    style="border-top: 1px solid #ccc; padding: 20px; font-family: Arial, sans-serif; font-size: 14px; color: #666; display: flex; justify-content: space-between; align-items: center;">
-    <!-- Sección de la imagen del negocio con enlace -->
-    <div>
-        <a href="index.html" target="_blank" rel="noopener noreferrer">
-            <img src="logo.png" alt="Arte en Luz" style="height: 150px;">
-        </a>
-    </div>
-
-    <!-- Sección de contacto -->
-    <div style="text-align: center;">
-        <p style="margin: 5px 0;">CR +506 2588-5600</p>
-        <p style="margin: 5px 0;">arteenluz@arteenluz.com</p>
-
-    </div>
-
-    <!-- Sección de dirección -->
-    <div style="text-align: center;">
-        <p style="margin: 5px 0;">Avenida 10 Calle 11</p>
-        <p style="margin: 5px 0;">San José - Costa Rica</p>
-    </div>
-
-    <!-- Íconos de redes sociales -->
-    <div style="display: flex; gap: 10px;">
-        <a href="https://www.facebook.com/arteenluz" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook" style="font-size: 20px; color: #666;"></i>
-        </a>
-        <a href="https://www.instagram.com/arteenluz/" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram" style="font-size: 20px; color: #666;"></i>
-        </a>
-
-        <a href="https://maps.app.goo.gl/NLaLL5UcXFGizq2k8" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-map-marker-alt" style="font-size: 20px; color: #666;"></i>
-        </a>
-        <a href="https://www.linkedin.com/company/arteenluz" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-linkedin" style="font-size: 20px; color: #666;"></i>
-        </a>
-    </div>
-</footer>
-</div>
-
-<script>
-    // Alternar submenú de idiomas
-    const languageMenu = document.getElementById('languageMenu');
-    const languageSubmenu = document.getElementById('languageSubmenu');
-
-    languageMenu.addEventListener('click', (e) => {
-        e.preventDefault();
-        languageSubmenu.classList.toggle('show'); // Alterna la clase 'show'
-    });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const productMenu = document.getElementById('productMenu'); // Opción "Productos"
-        const submenu = document.querySelector('.submenu'); // Submenú de "Productos"
-        const menuToggle = document.getElementById('menu-toggle'); // Botón hamburguesa
-        const menu = document.querySelector('.menu'); // Menú principal
-
-        // Alternar visibilidad del submenú al hacer clic en "Productos"
-        productMenu.addEventListener('click', (event) => {
-            event.preventDefault(); // Evitar comportamiento predeterminado
-            submenu.classList.toggle('show'); // Alternar visibilidad del submenú
-        });
-
-        // Mostrar/Ocultar el menú principal en móviles
-        menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('active'); // Mostrar/Ocultar menú principal
-        });
-
-        // Cerrar el submenú y el menú principal al hacer clic fuera
-        document.addEventListener('click', (event) => {
-            if (!submenu.contains(event.target) && !productMenu.contains(event.target)) {
-                submenu.classList.remove('show'); // Ocultar el submenú
-            }
-
-            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-                menu.classList.remove('active'); // Ocultar el menú principal
-            }
-        });
-    });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const buttons = document.querySelectorAll('.toggle-button');
-        let selectedType = '';
-
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                selectedType = button.id;
+            languageMenu.addEventListener('click', (e) => {
+                e.preventDefault();
+                languageSubmenu.classList.toggle('show'); // Alterna la clase 'show'
             });
-        });
 
-        document.getElementById('contactForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const errors = validateForm();
-            if (Object.keys(errors).length > 0) {
-                displayErrors(errors);
-                return;
-            }
-            try {
-                document.getElementById('contactForm').addEventListener('submit', async (event) => {
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const productMenu = document.getElementById('productMenu'); // Opción "Productos"
+                const submenu = document.querySelector('.submenu'); // Submenú de "Productos"
+                const menuToggle = document.getElementById('menu-toggle'); // Botón hamburguesa
+                const menu = document.querySelector('.menu'); // Menú principal
+
+                // Alternar visibilidad del submenú al hacer clic en "Productos"
+                productMenu.addEventListener('click', (event) => {
+                    event.preventDefault(); // Evitar comportamiento predeterminado
+                    submenu.classList.toggle('show'); // Alternar visibilidad del submenú
+                });
+
+                // Mostrar/Ocultar el menú principal en móviles
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active'); // Mostrar/Ocultar menú principal
+                });
+
+                // Cerrar el submenú y el menú principal al hacer clic fuera
+                document.addEventListener('click', (event) => {
+                    if (!submenu.contains(event.target) && !productMenu.contains(event.target)) {
+                        submenu.classList.remove('show'); // Ocultar el submenú
+                    }
+
+                    if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                        menu.classList.remove('active'); // Ocultar el menú principal
+                    }
+                });
+            });
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const buttons = document.querySelectorAll('.toggle-button');
+                let selectedType = '';
+
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        selectedType = button.id;
+                    });
+                });
+
+            document.getElementById('contactForm').addEventListener('submit', async (event) => {
                     event.preventDefault();
-                    const formData = new FormData(event.target);
-                    console.log("FORM DATA", formData);
+                    const boton = document.getElementById("btnEnviar");
 
-                    try {
-                        formData.append("tipo", selectedType);
+                    // Primero validamos el formulario ANTES de deshabilitar el botón
+                    const errors = validateForm();
+                    if (Object.keys(errors).length > 0) {
+                        displayErrors(errors);
+                        resetButton(boton); // No cambiamos el botón, solo lo reiniciamos
+                        return;
+                    }
+
+                    // Ahora sí deshabilitamos el botón solo si todo está correcto
+                    boton.disabled = true;
+                    boton.textContent = "Enviando...";
+                    boton.style.backgroundColor = "black";
+                    boton.style.color = "gray";
+
+                    const formData = new FormData(event.target);
+                    formData.append("tipo", selectedType);
+
+                  try {
                         const response = await fetch('https://ael-automation.nunez-technologies.com/email/controller.php?command=SEND_CONTACT_FORM', {
                             method: 'POST',
                             body: formData
                         });
-                        const result = await response.json();
-                        alert(result.message);
 
-                        if (result.status === "success") {
-                            event.target.reset();
+                        if (!response.ok) {
+                            throw new Error('Error en el servidor');
                         }
+
+                        alert('Formulario enviado con éxito');
+                        document.getElementById('contactForm').reset(); // Reiniciar formulario
+
+                        // Reiniciar los botones de selección
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        selectedType = ''; // Reiniciar la variable seleccionada
+
                     } catch (error) {
                         alert("Error al enviar el formulario.");
                     }
+
+                    resetButton(boton); // Al finalizar, reinicia el botón
                 });
 
-                if (!response.ok)
-                    throw new Error('Error en el servidor');
-                alert('Formulario enviado con éxito');
-                document.getElementById('contactForm').reset();
-                buttons.forEach(btn => btn.classList.remove('active'));
-            } catch {
-                document.getElementById('generalError').textContent = 'Error al enviar el formulario. Intenta nuevamente.';
-            }
-        });
+                // Función para reiniciar el botón al estado inicial
+                function resetButton(boton) {
+                    setTimeout(() => {
+                        boton.disabled = false;
+                        boton.textContent = "Enviar";
+                        boton.style.backgroundColor = "white";
+                        boton.style.color = "black";
+                    }, 500);
+                }
 
-        function validateForm() {
-            const errors = {};
-            const requiredFields = ['nombre', 'apellido', 'correo', 'telefono', 'informacion'];
-            requiredFields.forEach(id => {
-                const value = document.getElementById(id).value.trim();
-                if (!value)
-                    errors[id] = 'Este campo es obligatorio.';
+                // Función de validación del formulario
+                function validateForm() {
+                    let errors = {};
+                    const nombre = document.getElementById("nombre").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const mensaje = document.getElementById("mensaje").value.trim();
+
+                    if (nombre === "") errors.nombre = "El nombre es obligatorio.";
+                    if (email === "") errors.email = "El email es obligatorio.";
+                    if (mensaje === "") errors.mensaje = "El mensaje no puede estar vacío.";
+
+                    return errors;
+                }
+
+                // Función para mostrar errores en el formulario
+                function displayErrors(errors) {
+                    Object.keys(errors).forEach(key => {
+                        alert(errors[key]); // Puedes reemplazar esto con otra forma de mostrar errores en la UI
+                    });
+                }
+
+                document.querySelectorAll('input, textarea').forEach(input => {
+                    input.addEventListener('input', function() {
+                        if (this.value.trim() !== '') {
+                            document.getElementById(`${this.id}Error`).textContent = '';
+                        }
+                    });
+                });
+
+
+                function validateForm() {
+                    const errors = {};
+                    const requiredFields = ['nombre', 'apellido', 'correo', 'telefono', 'informacion'];
+                    requiredFields.forEach(id => {
+                        const value = document.getElementById(id).value.trim();
+                        if (!value)
+                            errors[id] = 'Este campo es obligatorio.';
+                    });
+                    if (!selectedType)
+                        errors.generalError = 'Selecciona Comercial o Residencial.';
+                    console.log("SELECTED TYPE", selectedType);
+                    return errors;
+                }
+
+                function displayErrors(errors) {
+                    document.querySelectorAll('.error').forEach(e => e.textContent = '');
+                    for (const id in errors) {
+                        document.getElementById(`${id}Error`).textContent = errors[id];
+                    }
+                }
             });
-            if (!selectedType)
-                errors.generalError = 'Selecciona Comercial o Residencial.';
-            console.log("SELECTED TYPE", selectedType);
-            return errors;
-        }
-
-        function displayErrors(errors) {
-            document.querySelectorAll('.error').forEach(e => e.textContent = '');
-            for (const id in errors) {
-                document.getElementById(`${id}Error`).textContent = errors[id];
-            }
-        }
-    });
-</script>
-</body>
+        </script>
+    </body>
 </html>
-
-
-
