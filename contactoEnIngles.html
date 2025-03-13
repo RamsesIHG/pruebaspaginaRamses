@@ -618,7 +618,7 @@
                     </div>
                     <div class="input-group">
                         <label for="telefono">Phone<span>*</span></label>
-                        <input type="tel" id="telefono" name="telefono" pattern="^\d{6,15}$" title="Por favor, ingrese entre 6 y 15 dígitos.">
+                        <input type="tel" id="telefono" name="telefono" pattern="^\d{6,15}$" title="Please, enter 6 or 15 digits.">
                         <div class="error" id="telefonoError"></div>
                     </div>
                     <div class="input-group">
@@ -839,7 +839,7 @@
                             errors[id] = 'This space is obligatory.';
                     });
                     if (!selectedType)
-                        errors.generalError = 'Selecciona Comercial o Residencial.';
+                        errors.generalError = 'Select Commercial o Residential.';
                     console.log("SELECTED TYPE", selectedType);
                     return errors;
                 }
