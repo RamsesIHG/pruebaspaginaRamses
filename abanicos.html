@@ -779,17 +779,18 @@ footer {
 
     <script>
 
-       // Alternar submenú de idiomas
-        const languageMenu = document.getElementById('languageMenu');
-        const languageSubmenu = document.getElementById('languageSubmenu');
+ // Alternar submenú de idiomas
+            const languageMenu = document.getElementById('languageMenu');
+            const languageSubmenu = document.getElementById('languageSubmenu');
 
-        languageMenu.addEventListener('click', (e) => {
-            e.preventDefault();
-            languageSubmenu.classList.toggle('show'); // Alterna la clase 'show'
-        });
+            languageMenu.addEventListener('click', (e) => {
+                e.preventDefault();
+                languageSubmenu.classList.toggle('show'); // Alterna la clase 'show'
+            });
 
-
-       document.addEventListener('DOMContentLoaded', () => {
+            
+       
+        document.addEventListener('DOMContentLoaded', () => {
         const productMenu = document.getElementById('productMenu'); // Opción "Productos"
         const submenu = document.querySelector('.submenu'); // Submenú de "Productos"
         const menuToggle = document.getElementById('menu-toggle'); // Botón hamburguesa
@@ -817,67 +818,6 @@ footer {
             }
         });
     });
-
-
-     document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.toggle-button');
-    let selectedType = '';
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            buttons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedType = button.id;
-        });
-    });
-
-    document.getElementById('contactForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const errors = validateForm();
-        if (Object.keys(errors).length > 0) {
-            displayErrors(errors);
-            return;
-        }
-        try {
-            const response = await fetch('https://yourserver.com/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nombre: document.getElementById('nombre').value,
-                    apellido: document.getElementById('apellido').value,
-                    correo: document.getElementById('correo').value,
-                    telefono: document.getElementById('telefono').value,
-                    informacion: document.getElementById('infmacion').value,
-                    tipo: selectedType
-                })
-            });
-            if (!response.ok) throw new Error('Error en el servidor');
-            alert('Formulario enviado con éxito');
-            document.getElementById('contactForm').reset();
-            buttons.forEach(btn => btn.classList.remove('active'));
-        } catch {
-            document.getElementById('generalError').textContent = 'Error al enviar el formulario. Intenta nuevamente.';
-        }
-    });
-
-    function validateForm() {
-        const errors = {};
-        const requiredFields = ['nombre', 'apellido', 'correo', 'telefono', 'informacion'];
-        requiredFields.forEach(id => {
-            const value = document.getElementById(id).value.trim();
-            if (!value) errors[id] = 'Este campo es obligatorio.';
-        });
-        if (!selectedType) errors.generalError = 'Selecciona Comercial o Residencial.';
-        return errors;
-    }
-
-    function displayErrors(errors) {
-        document.querySelectorAll('.error').forEach(e => e.textContent = '');
-        for (const id in errors) {
-            document.getElementById(`${id}Error`).textContent = errors[id];
-        }
-    }
-});
     </script>
 </body>
 </html>
