@@ -7,36 +7,31 @@
         <link rel="icon" href="logo.icon.ico">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <style>
-       * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+ * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body, html {
-        width: 100%;
-        height: 100%;
-        font-family: Arial, sans-serif;
-        background-color: white;
-        overflow-y: auto;
-    }
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            overflow-y: auto;
+        }
 
-    .page-container {
-          width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-    }
+        .page-container {
+              width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
 
-    header {
-        background: #fff;
-        color: black;
-        padding: 10px 20px;
-        margin-bottom: 20px;
-    }
+
 
     nav {
         display: flex;
@@ -187,136 +182,185 @@
         cursor: pointer;
     }
 
-    .carousel, .mini-carousel {
-    width: 100%;
-    height: 400px;
-    position: relative;
-    margin-bottom: 20px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-}
-.carousel img, .mini-carousel img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 100%;
-    opacity: 0;
-    transition: opacity 1s ease, left 1s ease;
-    object-fit: cover;
-}
-.carousel img.active {
-    left: 0;
-    opacity: 1;
-}
-.container2 {
-    padding: 15px;
-    text-align: center;
-}
-
-.button {
-    background-color: white;
-    color: black;
-    padding: 7px 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-    text-decoration: none;
-}
-.button:hover {
-    background-color: black;
-    color: white;
-    text-decoration-color: white;
-}
-.carousel-container {
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    position: relative;
-     margin-top: 80px; /* Asegura que el carrusel esté debajo del menú */   
-}
-.carousel-track {
-    display: flex;
-    gap: 5px;
-    transition: transform 0.5s ease;
-}
-.carousel-slide {
-    width: 25%;
-    flex-shrink: 0;
-}
-.carousel-slide img {
-    width: 100%;
-    height: 50%;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-       /* Diseño estándar (pantallas grandes) */
-.info-section {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.info-column {
-    width: 45%;
-}
-
-.social-media {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background-color: black; /* Cambia el color según tus necesidades */
-    border-radius: 50%;
-    color: #fff;
-    font-size: 24px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.social-icon:hover {
-    background-color: black; /* Color de fondo al pasar el cursor */
-}
+    
+        .container2 {
+            padding: 15px;
+            text-align: center;
+        }
 
 
-
-
-
-.carousel-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 5;
-        font-size: 18px;
-    }
-
-    .carousel-button:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .carousel-button.left {
-        left: 15px;
-    }
-
-    .carousel-button.right {
-        right: 15px;
-    }
+        .button {
+            background-color: white;
+            color: black;
+            padding: 7px 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: black;
+            color: white;
+            text-decoration-color: white;
+        }
    
+               /* Diseño estándar (pantallas grandes) */
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .info-column {
+            width: 45%;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: black; /* Cambia el color según tus necesidades */
+            border-radius: 50%;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: black; /* Color de fondo al pasar el cursor */
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 1200px;
+            height: 600px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0,);
+        }
+
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            position: relative;
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item img.blurred {
+            position: absolute;
+            width: 100%;
+            height: 90%;
+            object-fit: cover;
+            filter: blur(20px);
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .carousel-item img.foreground {
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.01);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 3;
+            border-radius: 50%;
+        }
+
+        .carousel-button.left {
+            left: 20px;
+        }
+
+        .carousel-button.right {
+            right: 20px;
+        }
+
+        .carousel-button:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+     .thumbnails-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 640px; /* Tamaño para 6 imágenes de 100px + 10px de margen */
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .thumbnails-container {
+            overflow: hidden;
+            width: 620px; /* Exactamente para 6 imágenes */
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+            width: max-content;
+        }
+
+        .thumbnails img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnails img:hover {
+            transform: scale(1.1);
+        }
+
+
 
 
 
@@ -359,6 +403,439 @@
                 }
 
             }
+
+            /* Estilos para móviles */
+            @media (max-width: 425px) {
+
+              .carousel-container {
+                    position: relative;
+                    left: -30px;
+                    width: 300px;
+                    height: 200px;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0,);
+                }
+
+
+                .carousel-item img.blurred {
+                    position: absolute;
+                    width: 100%;
+                    height: 90%;
+                    object-fit: cover;
+                    filter: blur(20px);
+                    opacity: 0.5;
+                    z-index: 1;
+                }
+
+                .carousel-button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(0, 0, 0, 0.01);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    font-size: 10px;
+                    cursor: pointer;
+                    z-index: 3;
+                    border-radius: 70%;
+                }
+
+                .carousel-button.left {
+                    left: 10px;
+                }
+
+                .carousel-button.right {
+                    right: 10px;
+                }
+
+                .carousel-button:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                  .thumbnails-wrapper {
+                    display: flex;
+                    left: -37px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 320px; 
+                    margin: 10px auto;
+                    position: relative;
+                }
+
+                .thumbnails-container {
+                    overflow: hidden;
+                    width: 310px; 
+                }
+
+                .thumbnails {
+                    display: flex;
+                    gap: 10px;
+                    transition: transform 0.5s ease-in-out;
+                    width: max-content;
+                }
+
+                .thumbnails img {
+                    width: 95px;
+                    height: auto;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: transform 0.3s ease;
+                }
+
+                .thumbnails img:hover {
+                    transform: scale(1.1);
+                }
+            }
+              /* Estilos para móviles */
+            @media (min-width: 374px) and (max-width: 424px) {
+
+
+              .carousel-container {
+                    position: relative;
+                    left: -30px;
+                    width: 350px;
+                    height: 250px;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0,);
+                }
+
+
+                .carousel-item img.blurred {
+                    position: absolute;
+                    width: 100%;
+                    height: 90%;
+                    object-fit: cover;
+                    filter: blur(20px);
+                    opacity: 0.5;
+                    z-index: 1;
+                }
+
+                .carousel-button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(0, 0, 0, 0.01);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    font-size: 10px;
+                    cursor: pointer;
+                    z-index: 3;
+                    border-radius: 70%;
+                }
+
+                .carousel-button.left {
+                    left: 10px;
+                }
+
+                .carousel-button.right {
+                    right: 10px;
+                }
+
+                .carousel-button:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                  .thumbnails-wrapper {
+                    display: flex;
+                    left: -37px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 380px; 
+                    margin: 10px auto;
+                    position: relative;
+                }
+
+                .thumbnails-container {
+                    overflow: hidden;
+                    width: 310px; 
+                }
+
+                .thumbnails {
+                    display: flex;
+                    gap: 10px;
+                    transition: transform 0.5s ease-in-out;
+                    width: max-content;
+                }
+
+                .thumbnails img {
+                    width: 95px;
+                    height: auto;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: transform 0.3s ease;
+                }
+
+                .thumbnails img:hover {
+                    transform: scale(1.1);
+                }
+            }
+              /* Estilos para móviles */
+          @media (min-width: 385px) and (max-width: 700px) {
+
+
+              .carousel-container {
+                    position: relative;
+                    left: -30px;
+                    width: 400px;
+                    height: 370px;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0,);
+                }
+
+
+                .carousel-item img.blurred {
+                    position: absolute;
+                    width: 100%;
+                    height: 90%;
+                    object-fit: cover;
+                    filter: blur(20px);
+                    opacity: 0.5;
+                    z-index: 1;
+                }
+
+                .carousel-button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(0, 0, 0, 0.01);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    font-size: 10px;
+                    cursor: pointer;
+                    z-index: 3;
+                    border-radius: 70%;
+                }
+
+                .carousel-button.left {
+                    left: 10px;
+                }
+
+                .carousel-button.right {
+                    right: 10px;
+                }
+
+                .carousel-button:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                  .thumbnails-wrapper {
+                    display: flex;
+                    left: -2px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 350px; 
+                    margin: 10px auto;
+                    position: relative;
+                }
+
+                .thumbnails-container {
+                    overflow: hidden;
+                    width: 700px; 
+                }
+
+                .thumbnails {
+                    display: flex;
+                    gap: 10px;
+                    transition: transform 0.5s ease-in-out;
+                    width: max-content;
+                }
+
+                .thumbnails img {
+                    width: 80px;
+                    height: auto;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: transform 0.3s ease;
+                }
+
+                .thumbnails img:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+            /* Estilos para móviles */
+          @media (min-width: 705px) and (max-width: 768px) {
+
+
+              .carousel-container {
+                    position: relative;
+                    left: -30px;
+                    width: 750px;
+                    height: 370px;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0,);
+                }
+
+
+                .carousel-item img.blurred {
+                    position: absolute;
+                    width: 100%;
+                    height: 90%;
+                    object-fit: cover;
+                    filter: blur(20px);
+                    opacity: 0.5;
+                    z-index: 1;
+                }
+
+                .carousel-button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(0, 0, 0, 0.01);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    font-size: 10px;
+                    cursor: pointer;
+                    z-index: 3;
+                    border-radius: 70%;
+                }
+
+                .carousel-button.left {
+                    left: 10px;
+                }
+
+                .carousel-button.right {
+                    right: 10px;
+                }
+
+                .carousel-button:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                  .thumbnails-wrapper {
+                    display: flex;
+                    left: -2px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 500px; 
+                    margin: 10px auto;
+                    position: relative;
+                }
+
+                .thumbnails-container {
+                    overflow: hidden;
+                    width: 700px; 
+                }
+
+                .thumbnails {
+                    display: flex;
+                    gap: 10px;
+                    transition: transform 0.5s ease-in-out;
+                    width: max-content;
+                }
+
+                .thumbnails img {
+                    width: 90px;
+                    height: auto;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: transform 0.3s ease;
+                }
+
+                .thumbnails img:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+                       /* Estilos para móviles */
+          @media (min-width: 800px) and (max-width: 1025px) {
+
+
+              .carousel-container {
+                    position: relative;
+                    left: -30px;
+                    width: 750px;
+                    height: 370px;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0,);
+                }
+
+
+                .carousel-item img.blurred {
+                    position: absolute;
+                    width: 100%;
+                    height: 90%;
+                    object-fit: cover;
+                    filter: blur(20px);
+                    opacity: 0.5;
+                    z-index: 1;
+                }
+
+                .carousel-button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(0, 0, 0, 0.01);
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    font-size: 10px;
+                    cursor: pointer;
+                    z-index: 3;
+                    border-radius: 70%;
+                }
+
+                .carousel-button.left {
+                    left: 10px;
+                }
+
+                .carousel-button.right {
+                    right: 10px;
+                }
+
+                .carousel-button:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                  .thumbnails-wrapper {
+                    display: flex;
+                    left: -30px;
+                    align-items: center;
+                    justify-content: center;
+                    width: 700px; 
+                    margin: 10px auto;
+                    position: relative;
+                }
+
+                .thumbnails-container {
+                    overflow: hidden;
+                    width: 500px; 
+                }
+
+                .thumbnails {
+                    display: flex;
+                    gap: 10px;
+                    transition: transform 0.5s ease-in-out;
+                    width: max-content;
+                }
+
+                .thumbnails img {
+                    width: 90px;
+                    height: auto;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    transition: transform 0.3s ease;
+                }
+
+                .thumbnails img:hover {
+                    transform: scale(1.1);
+                }
+            }
+
 
             /* Estilo para mostrar el submenú cuando tiene la clase "active" */
             .submenu.show {
@@ -590,7 +1067,7 @@
                      align-items: center; 
                      text-align: center;"
                     }
-        }
+        }             
         </style>
     </head>
     <body>
@@ -631,50 +1108,88 @@
         </nav>
     </header>
 
-    <div class="page-container">
+    
+<div class="page-container">
        <header>            
        </header>
 <!-- Carrusel principal -->
-<div class="carousel">
-    <div class="carousel">
-             <button class="carousel-button left" id="prevButton">&#10094;</button>
-             <button class="carousel-button right" id="nextButton">&#10095;</button>
-             <img src="casamagayon1.jpg" alt="Casa Magayon" loading="lazy"  class="active">
-             <img src="casamagayon2.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon3.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon4.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon5.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon6.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon7.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon8.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon9.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon10.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon11.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon13.jpg" alt="Casa Magayon" loading="lazy" >
-             <img src="casamagayon14.jpg" alt="Casa Magayon" loading="lazy" >
-        </div>
-</div>
-
-<!-- Mini carrusel -->
 <div class="carousel-container">
-    <div class="carousel-track">
-         <div class="carousel-slide"><img src="casamagayon1baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon2baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon3baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon11baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon4baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon5baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon6baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon7baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon8baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon9baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon10baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon11baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon13baja.jpg" alt="Casa Magayon" loading="lazy"></div>
-         <div class="carousel-slide"><img src="casamagayon14baja.jpg" alt="Casa Magayon" loading="lazy"></div>
+         <div class="carousel">
+            <button class="carousel-button left" id="prevButton">&#10094;</button>
+            <div class="carousel-slide-wrapper">
+                <div class="carousel-slides">
+                    <div class="carousel-item">
+                        <img src="casamagayon1.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon1.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon2.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon2.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon3.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon3.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon4.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon4.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon5.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon5.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon6.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon6.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon7.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon7.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="casamagayon8.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon8.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="casamagayon9.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon9.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="casamagayon11.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon11.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="casamagayon13.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon13.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                     <div class="carousel-item">
+                        <img src="casamagayon14.jpg" alt="Casa Magayon" class="blurred">
+                        <img src="casamagayon14.jpg" alt="Casa Magayon" class="foreground">
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-button right" id="nextButton">&#10095;</button>
+        </div>
+    </div>
+
+<div class="thumbnails-wrapper">
+    <div class="thumbnails-container">
+        <div class="thumbnails">
+            <img src="casamagayon1.jpg" alt="Casa Magayon">
+            <img src="casamagayon2.jpg" alt="Casa Magayon">
+            <img src="casamagayon3.jpg" alt="Casa Magayon">
+            <img src="casamagayon4.jpg" alt="Casa Magayon">
+            <img src="casamagayon5.jpg" alt="Casa Magayon">
+            <img src="casamagayon6.jpg" alt="Casa Magayon">
+            <img src="casamagayon7.jpg" alt="Casa Magayon">
+            <img src="casamagayon8.jpg" alt="Casa Magayon">
+            <img src="casamagayon9.jpg" alt="Casa Magayon">
+            <img src="casamagayon11.jpg" alt="Casa Magayon">
+            <img src="casamagayon13.jpg" alt="Casa Magayon">
+            <img src="casamagayon14.jpg" alt="Casa Magayon">
+        </div>
     </div>
 </div>
-
 <!-- Sección de información -->
 <div class="info-section">
     <!-- Columna izquierda -->
@@ -779,7 +1294,7 @@
 
 
         <script>
- document.addEventListener('DOMContentLoaded', () => {
+       document.addEventListener('DOMContentLoaded', () => {
             // Alternar submenú de idiomas
             const languageMenu = document.getElementById('languageMenu');
             const languageSubmenu = document.getElementById('languageSubmenu');
@@ -818,69 +1333,83 @@
                     menu.classList.remove('active');
                 }
             });
-
-            // Carrusel de imágenes
-            let currentImageIndex = 0;
-            const images = document.querySelectorAll('.carousel img');
-            const prevButton = document.getElementById('prevButton');
-            const nextButton = document.getElementById('nextButton');
-
-            function updateCarousel() {
-                images.forEach((img, index) => {
-                    img.classList.toggle('active', index === currentImageIndex);
-                });
-            }
-
-            if (prevButton && nextButton) {
-                prevButton.addEventListener('click', () => {
-                    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-                    updateCarousel();
-                });
-
-                nextButton.addEventListener('click', () => {
-                    currentImageIndex = (currentImageIndex + 1) % images.length;
-                    updateCarousel();
-                });
-
-                setInterval(() => nextButton.click(), 10000);
-            }
-
-            // Miniaturas del carrusel
-            const thumbnails = document.querySelectorAll('.carousel-track img');
-
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', (event) => {
-                    let clickedImageSrc = event.target.src.replace('baja', '');
-                    images.forEach((img, index) => {
-                        if (img.src.includes(clickedImageSrc)) {
-                            currentImageIndex = index;
-                            updateCarousel();
-                        }
-                    });
-                });
-            });
-
-            // Carrusel pequeño automático
-            const track = document.querySelector('.carousel-track');
-            const slides = Array.from(track.children);
-            const slideWidth = slides[0]?.getBoundingClientRect().width || 0;
-            let currentIndex = 0;
-
-            function updateSlidePosition() {
-                if (track) {
-                    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-                    track.style.transition = 'transform 0.5s ease-in-out';
-                }
-            }
-
-            function autoScroll() {
-                if (!slides.length) return;
-                currentIndex = (currentIndex + 1) % slides.length;
-                updateSlidePosition();
-            }
-
-            setInterval(autoScroll, 4000);
+            
         });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const thumbnails = document.querySelectorAll('.thumbnails img');
+        const mainImage = document.querySelector('.carousel-item img.foreground');
+        const thumbnailContainer = document.querySelector('.thumbnails');
+        const carouselSlides = document.querySelector('.carousel-slides');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        const visibleThumbnails = 6;
+        let mainIndex = 0;
+        let thumbScrollIndex = 0;
+
+        const images = Array.from(thumbnails).map(img => img.src);
+
+       
+        function updateMainCarousel(index) {
+            mainImage.src = images[index];
+            mainIndex = index;
+
+
+            const offset = -mainIndex * 100;
+            carouselSlides.style.transform = `translateX(${offset}%)`;
+        }
+
+
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => {
+                updateMainCarousel(index);
+            });
+        });
+
+
+    function autoAdvanceMainCarousel() {
+        mainIndex = (mainIndex + 1) % images.length;
+        updateMainCarousel(mainIndex);
+    }
+    setInterval(autoAdvanceMainCarousel, 10000); // cada 10s
+
+
+    prevButton.addEventListener('click', () => {
+        mainIndex = (mainIndex - 1 + images.length) % images.length;
+        updateMainCarousel(mainIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+        mainIndex = (mainIndex + 1) % images.length;
+        updateMainCarousel(mainIndex);
+    });
+
+
+    function moveThumbnails(direction) {
+        const totalThumbnails = thumbnails.length;
+
+        if (direction === 1) {
+            if (thumbScrollIndex < totalThumbnails - visibleThumbnails) {
+                thumbScrollIndex++;
+            } else {
+                thumbScrollIndex = 0;
+            }
+        } else {
+            if (thumbScrollIndex > 0) {
+                thumbScrollIndex--;
+            }
+        }
+
+        const offset = thumbScrollIndex * (thumbnails[0].offsetWidth + 10);
+        thumbnailContainer.style.transform = `translateX(-${offset}px)`;
+    }
+
+   
+    setInterval(() => moveThumbnails(1), 5000);
+});
         </script>
     </body>
     </html>
