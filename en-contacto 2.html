@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Contacto | Arte En Luz </title>
+        <link rel="icon" href="logo.icon.ico">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            /* Estilos generales */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            body, html {
+                width: 100%;
+                height: 100%;
+                font-family: Arial, sans-serif;
+                background-color: white;
+                overflow-y: auto;
+            }
+            .page-container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #ffffff; /* Fondo blanco del contenedor central */
+            }
+
+
+            /* Estilos del header y menú */
+            header {
+                background: #ffffff;
+                color: black;
+                padding: 10px 20px;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+            nav ul {
+                list-style: none;
+                display: flex;
+            }
+            nav li {
+                position: relative;
+                margin-right: 20px;
+            }
+            nav a {
+                color: #000000;
+                text-decoration: none;
+            }
+
+            .submenu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                right: 0;
+                background-color: #ffffff;
+                width: 160%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                z-index: 10;
+            }
+
+            .submenu li {
+                margin: 0;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            .submenu a {
+                display: block;
+                padding: 5px 10px;
+                color: black;
+            }
+
+            .button {
+                background-color: white;
+                color: black;
+                padding: 7px 10px;
+                border: 2px solid black;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+            .button:not(:disabled):hover {
+                background-color: black;
+                color: white;
+                text-decoration-color: white;
+            }
+
+            /* Estilos de transición para una apertura más suave */
+            .submenu{
+                transition: opacity 0.3s ease;
+            }
+
+
+            .submenu a {
+                display: block;
+                padding: 5px 10px;
+                color: black;
+            }
+
+            li:hover .submenu {
+                display: block;
+            }
+
+            /* Ajustes generales del submenú */
+            .submenu {
+                display: none; /* Oculto inicialmente */
+                flex-direction: column;
+                position: absolute;
+                right: 0;
+                background-color: #ffffff;
+                width: 200px; /* Ajusta según tus necesidades */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                z-index: 10;
+            }
+
+            .submenu li {
+                margin: 0;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .submenu li:last-child {
+                border-bottom: none; /* Elimina el borde del último elemento */
+            }
+
+            .button {
+                background-color: white;
+                color: black;
+                padding: 7px 10px;
+                border: 2px solid black;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+
+            button:not(:disabled):hover {
+                background-color: black;
+                color: white;
+            }
+
+
+            .menu {
+                display: flex;
+                list-style: none;
+                gap: 20px;
+                margin: 0;
+                padding: 0;
+                justify-content: right;
+            }
+
+            .menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+
+            }
+
+
+
+            h1 {
+                font-size: 28px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+            p {
+                color: #666;
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
+
+            .input-group {
+                margin-bottom: 20px;
+            }
+
+            .input-group label {
+                display: block;
+                text-align: left;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 12px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .button-group {
+                display: flex;
+                justify-content: space-between;
+                margin: 15px 0;
+            }
+
+            .toggle-button, .submit-button {
+                padding: 12px 20px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                border-radius: 4px;
+            }
+
+            .toggle-button {
+                background-color: #fff;
+                color: #333;
+                border: 1px solid #ccc;
+                width: 48%;
+            }
+
+            .toggle-button.active {
+                background-color: #333;
+                color: white;
+            }
+
+            .submit-button {
+                background-color: white;
+                color: black;
+                width: 100%;
+                border: 1px solid #ccc;
+
+            }
+
+            .submit-button:hover {
+                background-color: black;
+                color: white;
+                transition: background-color 0.3s;
+            }
+
+            .form-container label span {
+                color: red;
+            }
+            .form-container input[type="text"],
+            .form-container input[type="email"],
+            .form-container input[type="tel"] {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                background-color: #f1f1f1;
+            }
+
+            label span {
+                color: red;
+            }
+
+            .input-group {
+                margin-bottom: 15px;
+                text-align: left;
+            }
+
+            .input-group label {
+                display: block;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .error {
+                color: red;
+                font-size: 12px;
+                margin-top: 5px;
+            }
+
+
+            /* Estilos del footer */
+            footer {
+                top: 300px;
+                background-color: white;
+                padding: 20px;
+                display: flex;
+
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+
+
+            @media (max-width: 768px) {
+                nav {
+                    position: relative;
+                }
+
+                .menu {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 60px;
+                    right: 0;
+                    background-color: #ffffff;
+                    width: 100%;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    padding: 10px;
+                }
+
+                .menu li {
+                    margin-bottom: 10px;
+                    text-align: left;
+                }
+
+                .menu-toggle {
+                    display: block;
+                }
+
+                .submenu {
+                    position: relative;
+                    left: 0;
+                }
+
+                .project-item {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+
+
+
+            }
+
+            /* Estilo para mostrar el submenú cuando tiene la clase "active" */
+            .submenu.show {
+                display: block;
+            }
+
+            /* Estilos para móviles */
+            @media (max-width: 768px) {
+
+
+                .menu {
+                    display: none;
+                    flex-direction: column;
+                    background-color: white;
+                    padding: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+
+                .menu.active {
+                    display: flex;
+                }
+
+                /* Estilo del submenú para móviles */
+                .submenu {
+                    margin-left: 20px; /* Alinea más a la derecha */
+                }
+            }
+
+            /* Ajustes para móviles */
+            @media (max-width: 900px) {
+                .submenu {
+                    display: none;
+                    flex-direction: column;
+                    position: relative;
+                    right: 0;
+                    background-color: #ffffff;
+                    width: 100%;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    padding: 10px;
+                }
+
+                .submenu li {
+                    margin: 0;
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .submenu.show {
+                    display: block;
+                }
+            }
+
+            /* Funcionamiento del Menu en vista MOVIL */
+            @media (max-width: 768px) {
+                nav {
+                    position: relative;
+                }
+
+                .menu {
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 60px;  /* Asegura que el menú se muestra debajo del logo */
+                    left: 0;
+                    background-color: #fff;
+                    width: 100%;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    padding: 10px;
+                    z-index: 10; /* Asegura que el menú está por encima del contenido */
+                }
+
+                /* Mostrar el menú cuando se activa la clase 'active' */
+                .menu.active {
+                    display: flex;
+                }
+
+                /* Estilo del botón de menú en dispositivos móviles */
+                .menu-toggle {
+                    display: block;
+                    background: none;
+                    border: none;
+                    font-size: 28px;
+                    cursor: pointer;
+                    z-index: 11; /* Asegura que el botón de hamburguesa esté encima del menú */
+                    top: 40px;
+                }
+
+                /* Submenú que aparece al hacer clic en "Productos" */
+                .submenu {
+                    position: relative;
+                    left: 0;
+                }
+
+                .container{
+                    display: none;
+                }
+
+                .containermovil{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                    padding: 20px;
+                    max-width: 1200px;
+                    margin: 0 auto;
+
+                }
+
+                footer{
+
+                    border-top: 30px solid #ccc;
+                    padding: 20px;
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    color: #666;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+
+                }
+
+                .map-container{
+                    display: none;
+
+                }
+
+                .map-movilcontainer {
+                    display: flex;
+                }
+
+            }
+
+            @media (min-width: 768px) {
+
+                .container-contact-info{
+                    margin-right: 500px;
+                }
+
+                .container-contact-form{
+                    margin-left: 500px;
+                    margin-top: -280px;
+                }
+                .map-container{
+                    margin-right: 400px;
+                    margin-top: -350px;
+
+                }
+
+                .map-movilcontainer {
+                    display: none;
+                }
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                input, textarea, button {
+                    padding: 10px;
+                    font-size: 16px;
+                }
+
+                button {
+                    background-color: #007BFF;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                button:not(:disabled):hover {
+                    background-color: black;
+                }
+
+                button:disabled {
+                    background-color: #ccc; /* Color gris */
+                    color: #666; /* Texto gris */
+                    border: 1px solid #999;
+                    cursor: not-allowed; /* Cambia el cursor */
+                    opacity: 0.6;
+                }
+            }
+                btnEnviar {
+                    background-color: white;
+                    color: black;
+                    border: 2px solid black;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                btnEnviar:not(:disabled):hover {
+                    background-color: black;
+                    color: white;
+                }
+
+                btnEnviar:disabled {
+                    background-color: black !important;
+                    color: gray !important;
+                    border: 2px solid black !important;
+                    cursor: not-allowed;
+                    pointer-events: none; 
+                }
+
+        </style>
+    </head>
+    <body>
+        <div class="page-container">
+            <!-- Header y menú -->
+            <header>
+                <nav>
+                    <h1>
+                     <a href="en-index.html">
+                            <img src="logo.png" alt="Descripción del logo" style="height: 100px;">
+                        </a>
+                    </h1>
+                    <button id="menu-toggle" class="menu-toggle">
+                        <i class="fas fa-bars"></i> <!-- Ícono de hamburguesa -->
+                    </button>
+                    <ul class="menu">
+                        <li><a href="en-index.html">Home</a></li>
+                        <li><a href="en-galeria.html">Gallery</a></li>
+                        <li><a href="en-nosotros.html">About us</a></li>
+                        <li>
+                             <a class="menu-item" id="productMenu">Products ↓</a>
+                                <ul class="submenu" id="productSubmenu">
+                                    <li><a href="en-productosComerciales.html">Commercial</a></li>
+                                    <li><a href="en-productosResidenciales.html">Residential</a></li>
+                                </ul>
+                            </li>
+                             <li><a href="en-contacto.html" class="button">Contact us</a></li>
+                            <li>  
+                                <a class="menu-item" id="languageMenu">
+                                    <img src="traductor.png" alt="Traductor" style="width: 30px; cursor: pointer;">
+                                </a>
+                                 <ul class="submenu" id="languageSubmenu">
+                                    <li><a href="contacto.html">Español</a></li>
+                                    <li><a href="en-contacto.html">English</a></li>
+                            </ul>
+                        </li>
+                    </ul>                      
+                </nav>
+            </header>
+            <div class="container-contact-info">
+                <!-- Contact Information Section -->
+                <div class="contact-info">
+                    <h2>Contact details</h2>
+            <br>
+
+            <p><strong>Location:</strong> <br> Centro comercial las torres, Calle Luisa 50, sabana norte</p> <br>
+            <p><strong>Phone:</strong> <br> CR +506 2588-5600</p> <br>
+            <p><strong>Mail:</strong>  <br> arteenluz@arteenluz.com</p> <br>
+
+                </div>
+            </div>
+
+            <!-- Contact Form Section -->
+            <div class="container-contact-form">
+                <form id="contactForm" action="contacto.php" method="POST">
+                    <div class="input-group">
+                        <label for="nombre">Name<span>*</span></label>
+                        <input type="text" id="nombre" name="nombre">
+                        <div class="error" id="nombreError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="apellido">Last Name<span>*</span></label>
+                        <input type="text" id="apellido" name="apellido">
+                        <div class="error" id="apellidoError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="correo">Mail<span>*</span></label>
+                        <input type="email" id="correo" name="correo">
+                        <div class="error" id="correoError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="telefono">Phone<span>*</span></label>
+                        <input type="tel" id="telefono" name="telefono" pattern="^\d{6,15}$" title="Please, enter 6 or 15 digits.">
+                        <div class="error" id="telefonoError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="informacion">Desired information<span>*</span></label>
+                        <input type="text" id="informacion" name="informacion">
+                        <div class="error" id="informacionError"></div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" id="comercial" class="toggle-button">Commercial</button>
+                        <button type="button" id="residencial" class="toggle-button">Residential</button>
+                    </div>
+
+                    <button id="btnEnviar" type="submit" class="submit-button">Send</button>
+                    <div class="error" id="generalError"></div><br><br><br><br>
+                </form>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9376198546315!2d-84.10416392472878!3d9.939148474078362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fcaaaba75e13%3A0x52947a84dc2e2989!2sArte%20en%20Luz%20de%20Costa%20Rica%20S.A!5e0!3m2!1ses!2scr!4v1737917437622!5m2!1ses!2scr" 
+                    width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="map-movilcontainer">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9376198546315!2d-84.10416392472878!3d9.939148474078362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fcaaaba75e13%3A0x52947a84dc2e2989!2sArte%20en%20Luz%20de%20Costa%20Rica%20S.A!5e0!3m2!1ses!2scr!4v1737917437622!5m2!1ses!2scr" 
+                    width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+
+            <!-- Zona de redes sociales -->
+            <br> <br> <br>
+            <footer 
+                style="border-top: 1px solid #ccc; padding: 20px; font-family: Arial, sans-serif; font-size: 14px; color: #666; display: flex; justify-content: space-between; align-items: center;">
+                <!-- Sección de la imagen del negocio con enlace -->
+                <div>
+                    <a href="en-index.html" target="_blank" rel="noopener noreferrer">
+                        <img src="logo.png" alt="Arte en Luz" style="height: 150px;">
+                    </a>
+                </div>
+
+                <!-- Sección de contacto -->
+                <div style="text-align: center;">
+                    <p style="margin: 5px 0;">CR +506 2588-5600</p>
+                    <p style="margin: 5px 0;">arteenluz@arteenluz.com</p>
+
+                </div>
+
+                <!-- Sección de dirección -->
+                <div style="text-align: center;">
+                    <p style="margin: 5px 0;">Centro comercial las torres</p>
+                    <p style="margin: 5px 0;">Calle Luisa 50, sabana norte</p>
+                </div>
+
+                <!-- Íconos de redes sociales -->
+                <div style="display: flex; gap: 10px;">
+                    <a href="https://www.facebook.com/arteenluz" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook" style="font-size: 20px; color: #666;"></i>
+                    </a>
+                    <a href="https://www.instagram.com/arteenluz/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram" style="font-size: 20px; color: #666;"></i>
+                    </a>
+
+                    <a href="https://maps.app.goo.gl/NLaLL5UcXFGizq2k8" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-map-marker-alt" style="font-size: 20px; color: #666;"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/arteenluz" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin" style="font-size: 20px; color: #666;"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+
+        <script>
+            // Alternar submenú de idiomas
+            const languageMenu = document.getElementById('languageMenu');
+            const languageSubmenu = document.getElementById('languageSubmenu');
+
+            languageMenu.addEventListener('click', (e) => {
+                e.preventDefault();
+                languageSubmenu.classList.toggle('show'); // Alterna la clase 'show'
+            });
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const productMenu = document.getElementById('productMenu'); // Opción "Productos"
+                const submenu = document.querySelector('.submenu'); // Submenú de "Productos"
+                const menuToggle = document.getElementById('menu-toggle'); // Botón hamburguesa
+                const menu = document.querySelector('.menu'); // Menú principal
+
+                // Alternar visibilidad del submenú al hacer clic en "Productos"
+                productMenu.addEventListener('click', (event) => {
+                    event.preventDefault(); // Evitar comportamiento predeterminado
+                    submenu.classList.toggle('show'); // Alternar visibilidad del submenú
+                });
+
+                // Mostrar/Ocultar el menú principal en móviles
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active'); // Mostrar/Ocultar menú principal
+                });
+
+                // Cerrar el submenú y el menú principal al hacer clic fuera
+                document.addEventListener('click', (event) => {
+                    if (!submenu.contains(event.target) && !productMenu.contains(event.target)) {
+                        submenu.classList.remove('show'); // Ocultar el submenú
+                    }
+
+                    if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                        menu.classList.remove('active'); // Ocultar el menú principal
+                    }
+                });
+            });
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const buttons = document.querySelectorAll('.toggle-button');
+                let selectedType = '';
+
+                buttons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        selectedType = button.id;
+                    });
+                });
+
+            document.getElementById('contactForm').addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    const boton = document.getElementById("btnEnviar");
+
+                    // Primero validamos el formulario ANTES de deshabilitar el botón
+                    const errors = validateForm();
+                    if (Object.keys(errors).length > 0) {
+                        displayErrors(errors);
+                        resetButton(boton); // No cambiamos el botón, solo lo reiniciamos
+                        return;
+                    }
+
+                    // Ahora sí deshabilitamos el botón solo si todo está correcto
+                    boton.disabled = true;
+                    boton.textContent = "Sending...";
+                    boton.style.backgroundColor = "black";
+                    boton.style.color = "gray";
+
+                    const formData = new FormData(event.target);
+                    formData.append("tipo", selectedType);
+
+                  try {
+                        const response = await fetch('https://ael-automation.nunez-technologies.com/email/controller.php?command=SEND_CONTACT_FORM', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Error en el servidor');
+                        }
+
+                        alert('Form send with succes.');
+                        document.getElementById('contactForm').reset(); // Reiniciar formulario
+
+                        // Reiniciar los botones de selección
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        selectedType = ''; // Reiniciar la variable seleccionada
+
+                    } catch (error) {
+                        alert("Error al enviar el formulario.");
+                    }
+
+                    resetButton(boton); // Al finalizar, reinicia el botón
+                });
+
+                // Función para reiniciar el botón al estado inicial
+                function resetButton(boton) {
+                    setTimeout(() => {
+                        boton.disabled = false;
+                        boton.textContent = "Send";
+                        boton.style.backgroundColor = "white";
+                        boton.style.color = "black";
+                    }, 500);
+                }
+
+                // Función de validación del formulario
+                function validateForm() {
+                    let errors = {};
+                    const nombre = document.getElementById("nombre").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const mensaje = document.getElementById("mensaje").value.trim();
+
+                    if (nombre === "") errors.nombre = "El nombre es obligatorio.";
+                    if (email === "") errors.email = "El email es obligatorio.";
+                    if (mensaje === "") errors.mensaje = "El mensaje no puede estar vacío.";
+
+                    return errors;
+                }
+
+                // Función para mostrar errores en el formulario
+                function displayErrors(errors) {
+                    Object.keys(errors).forEach(key => {
+                        alert(errors[key]); // Puedes reemplazar esto con otra forma de mostrar errores en la UI
+                    });
+                }
+
+                document.querySelectorAll('input, textarea').forEach(input => {
+                    input.addEventListener('input', function() {
+                        if (this.value.trim() !== '') {
+                            document.getElementById(`${this.id}Error`).textContent = '';
+                        }
+                    });
+                });
+
+
+                function validateForm() {
+                    const errors = {};
+                    const requiredFields = ['nombre', 'apellido', 'correo', 'telefono', 'informacion'];
+                    requiredFields.forEach(id => {
+                        const value = document.getElementById(id).value.trim();
+                        if (!value)
+                            errors[id] = 'This space is obligatory.';
+                    });
+                    if (!selectedType)
+                        errors.generalError = 'Select Commercial o Residential.';
+                    console.log("SELECTED TYPE", selectedType);
+                    return errors;
+                }
+
+                function displayErrors(errors) {
+                    document.querySelectorAll('.error').forEach(e => e.textContent = '');
+                    for (const id in errors) {
+                        document.getElementById(`${id}Error`).textContent = errors[id];
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
