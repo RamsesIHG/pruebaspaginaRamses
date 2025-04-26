@@ -1257,69 +1257,122 @@
 
 
         <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Alternar submenú de idiomas
-    const languageMenu = document.getElementById('languageMenu');
-    const languageSubmenu = document.getElementById('languageSubmenu');
+       document.addEventListener('DOMContentLoaded', () => {
+            // Alternar submenú de idiomas
+            const languageMenu = document.getElementById('languageMenu');
+            const languageSubmenu = document.getElementById('languageSubmenu');
 
-    if (languageMenu && languageSubmenu) {
-        languageMenu.addEventListener('click', (e) => {
-            e.preventDefault();
-            languageSubmenu.classList.toggle('show');
-        });
-    }
-
-    // Carrusel principal
-    const images = document.querySelectorAll('.carousel img');
-    let currentImageIndex = 0;
-
-    if (images.length > 0) {
-        document.getElementById('prevButton')?.addEventListener('click', () => {
-            images[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            images[currentImageIndex].classList.add('active');
-        });
-
-        document.getElementById('nextButton')?.addEventListener('click', () => {
-            images[currentImageIndex].classList.remove('active');
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            images[currentImageIndex].classList.add('active');
-        });
-
-        setInterval(() => {
-            document.getElementById('nextButton')?.click();
-        }, 10000);
-    }
-
-
-    // Menú de productos
-    const productMenu = document.getElementById('productMenu');
-    const submenu = document.querySelector('.submenu');
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.querySelector('.menu');
-
-    if (productMenu && submenu) {
-        productMenu.addEventListener('click', (event) => {
-            event.preventDefault();
-            submenu.classList.toggle('show');
-        });
-    }
-
-    if (menuToggle && menu) {
-        menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('active');
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!submenu.contains(event.target) && !productMenu.contains(event.target)) {
-                submenu.classList.remove('show');
+            if (languageMenu && languageSubmenu) {
+                languageMenu.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    languageSubmenu.classList.toggle('show');
+                });
             }
 
-            if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-                menu.classList.remove('active');
+            // Menú de productos
+            const productMenu = document.getElementById('productMenu');
+            const submenu = document.querySelector('.submenu');
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (productMenu && submenu) {
+                productMenu.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    submenu.classList.toggle('show');
+                });
             }
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    menu.classList.toggle('active');
+                });
+            }
+
+            document.addEventListener('click', (event) => {
+                if (submenu && productMenu && !submenu.contains(event.target) && !productMenu.contains(event.target)) {
+                    submenu.classList.remove('show');
+                }
+                if (menu && menuToggle && !menu.contains(event.target) && !menuToggle.contains(event.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+            
         });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const thumbnails = document.querySelectorAll('.thumbnails img');
+        const mainImage = document.querySelector('.carousel-item img.foreground');
+        const thumbnailContainer = document.querySelector('.thumbnails');
+        const carouselSlides = document.querySelector('.carousel-slides');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+
+        const visibleThumbnails = 6;
+        let mainIndex = 0;
+        let thumbScrollIndex = 0;
+
+        const images = Array.from(thumbnails).map(img => img.src);
+
+       
+        function updateMainCarousel(index) {
+            mainImage.src = images[index];
+            mainIndex = index;
+
+
+            const offset = -mainIndex * 100;
+            carouselSlides.style.transform = `translateX(${offset}%)`;
+        }
+
+
+        thumbnails.forEach((thumb, index) => {
+            thumb.addEventListener('click', () => {
+                updateMainCarousel(index);
+            });
+        });
+
+
+    function autoAdvanceMainCarousel() {
+        mainIndex = (mainIndex + 1) % images.length;
+        updateMainCarousel(mainIndex);
     }
-});    </script>
+    setInterval(autoAdvanceMainCarousel, 10000); // cada 10s
+
+
+    prevButton.addEventListener('click', () => {
+        mainIndex = (mainIndex - 1 + images.length) % images.length;
+        updateMainCarousel(mainIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+        mainIndex = (mainIndex + 1) % images.length;
+        updateMainCarousel(mainIndex);
+    });
+
+
+    function moveThumbnails(direction) {
+        const totalThumbnails = thumbnails.length;
+
+        if (direction === 1) {
+            if (thumbScrollIndex < totalThumbnails - visibleThumbnails) {
+                thumbScrollIndex++;
+            } else {
+                thumbScrollIndex = 0;
+            }
+        } else {
+            if (thumbScrollIndex > 0) {
+                thumbScrollIndex--;
+            }
+        }
+
+        const offset = thumbScrollIndex * (thumbnails[0].offsetWidth + 10);
+        thumbnailContainer.style.transform = `translateX(-${offset}px)`;
+    }
+
+   
+    setInterval(() => moveThumbnails(1), 5000);
+});  
+ </script>
     </body>
     </html>
